@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // จุดสำคัญ: ต้องมั่นใจว่า path ตรงนี้ถูกต้องตามโครงสร้างโฟลเดอร์ของคุณ
 import 'package:flutter_speed_ui_app_test/views/a01_ui.dart';
+import 'package:flutter_speed_ui_app_test/views/b01_ui.dart';
 
 class HomeUI extends StatefulWidget {
   const HomeUI({super.key});
@@ -32,9 +33,17 @@ class _HomeUIState extends State<HomeUI> {
                 },
               ),
               _buildMenuButton(
-                  text: 'Go to B Page',
-                  color: const Color(0xFF2346B8),
-                  onPressed: () {}),
+                text: 'Go to B Page',
+                color: const Color(0xFF2346B8),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const B01Ui()), // <--- ต้องเป็น B01Ui (u ใหญ่ i เล็ก)
+                  );
+                },
+              ),
               _buildMenuButton(
                   text: 'Go to C Page',
                   color: const Color(0xFF06B23C),
