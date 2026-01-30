@@ -13,100 +13,125 @@ class _A02UIState extends State<A02UI> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              const Text(
-                'Welcome Back',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF333333),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam maecenas mi non sed ut odio. Non, justo, sed facilisi et.',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey, fontSize: 14),
-              ),
-              const SizedBox(height: 40),
-              // ช่องกรอก Username
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Username , Email & Phone Number',
-                  filled: true,
-                  fillColor: const Color(0xFFF2F2F2),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide.none,
+        child: SingleChildScrollView(
+          // เพิ่มส่วนนี้เพื่อให้หน้าจอสไลด์ได้เวลาเปิดคีย์บอร์ด
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                // --- ส่วนที่เพิ่ม: ปุ่มกดย้อนกลับ ---
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context); // คำสั่งสำหรับกดย้อนกลับ
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_ios, // ใช้ไอคอนลูกศรแบบ iOS
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              // ช่องกรอก Password
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  filled: true,
-                  fillColor: const Color(0xFFF2F2F2),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide.none,
+                // -----------------------------
+
+                const SizedBox(height: 20),
+                const Text(
+                  'Welcome Back',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF333333),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
+                const SizedBox(height: 10),
+                const Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam maecenas mi non sed ut odio. Non, justo, sed facilisi et.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                ),
+                const SizedBox(height: 40),
+
+                // ช่องกรอก Username
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Username , Email & Phone Number',
+                    filled: true,
+                    fillColor: const Color(0xFFF2F2F2),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // ช่องกรอก Password
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    filled: true,
+                    fillColor: const Color(0xFFF2F2F2),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text('Forgot Password ?',
+                        style: TextStyle(color: Colors.black87)),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // ปุ่ม Sign In
+                ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Forgot Password ?',
-                      style: TextStyle(color: Colors.black87)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFF8A2ED),
+                    minimumSize: const Size(double.infinity, 60),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                  ),
+                  child: const Text('Sign in',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold)),
                 ),
-              ),
-              const SizedBox(height: 20),
-              // ปุ่ม Sign In
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFF8A2ED),
-                  minimumSize: const Size(double.infinity, 60),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
+                const SizedBox(height: 30),
+
+                const Row(
+                  children: [
+                    Expanded(child: Divider()),
+                    Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text('Or Sign up With')),
+                    Expanded(child: Divider()),
+                  ],
                 ),
-                child: const Text('Sign in',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold)),
-              ),
-              const SizedBox(height: 30),
-              const Row(
-                children: [
-                  Expanded(child: Divider()),
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('Or Sign up With')),
-                  Expanded(child: Divider()),
-                ],
-              ),
-              const SizedBox(height: 30),
-              // ปุ่ม Social Media
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _socialButton(icon: Icons.g_mobiledata, color: Colors.red),
-                  const SizedBox(width: 20),
-                  _socialButton(icon: Icons.facebook, color: Colors.blue),
-                  const SizedBox(width: 20),
-                  _socialButton(icon: Icons.apple, color: Colors.black),
-                ],
-              ),
-            ],
+                const SizedBox(height: 30),
+
+                // ปุ่ม Social Media
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _socialButton(icon: Icons.g_mobiledata, color: Colors.red),
+                    const SizedBox(width: 20),
+                    _socialButton(icon: Icons.facebook, color: Colors.blue),
+                    const SizedBox(width: 20),
+                    _socialButton(icon: Icons.apple, color: Colors.black),
+                  ],
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
@@ -116,8 +141,9 @@ class _A02UIState extends State<A02UI> {
   Widget _socialButton({required IconData icon, required Color color}) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF2F2F2),
+      decoration: const BoxDecoration(
+        // เพิ่ม const เพื่อประสิทธิภาพ
+        color: Color(0xFFF2F2F2),
         shape: BoxShape.circle,
       ),
       child: Icon(icon, size: 35, color: color),

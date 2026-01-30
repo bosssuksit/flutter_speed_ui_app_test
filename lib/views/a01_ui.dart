@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// 1. เพิ่มการ Import ไฟล์ a02_ui.dart เพื่อให้เรียกใช้งานคลาส A02UI ได้
 import 'package:flutter_speed_ui_app_test/views/a02_ui.dart';
 
 class A01UI extends StatelessWidget {
@@ -12,16 +11,31 @@ class A01UI extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            // --- ส่วนที่เพิ่ม: ปุ่มกดย้อนกลับไปหน้า Home ---
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context); // ย้อนกลับไปหน้า HomeUI
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            // ---------------------------------------
+
             // ส่วนบน: การ์ดสีชมพูพร้อมรูปภาพ
             Container(
-              margin: const EdgeInsets.all(20),
-              height: MediaQuery.of(context).size.height * 0.5,
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              height: MediaQuery.of(context).size.height *
+                  0.45, // ปรับความสูงลงเล็กน้อยเพื่อให้พอดีกับปุ่ม Back
               decoration: BoxDecoration(
                 color: const Color(0xFFF8A2ED),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: const Center(
-                // ใช้ Icon จรวดตามภาพตัวอย่างของคุณ
                 child:
                     Icon(Icons.rocket_launch, size: 150, color: Colors.white),
               ),
@@ -65,7 +79,6 @@ class A01UI extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        // 2. แก้ไขส่วน onPressed ให้สั่งเปลี่ยนหน้าไปยัง A02UI
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -93,7 +106,7 @@ class A01UI extends StatelessWidget {
                     Expanded(
                       child: TextButton(
                         onPressed: () {
-                          // ฟังก์ชันสำหรับ Register (ถ้ามี)
+                          // ฟังก์ชันสำหรับ Register
                         },
                         child: const Text(
                           'Register',
